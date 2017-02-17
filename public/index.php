@@ -1,6 +1,6 @@
 <?php
 
-require('vendor/autoload.php');
+require('../vendor/autoload.php');
 $router = new \App\Config\Router\Router($_GET);
 
 

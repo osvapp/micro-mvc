@@ -1,5 +1,5 @@
 <?php
-namespace App\Config;
+namespace App\System;
 use App\Models\Database;
 
 class App {

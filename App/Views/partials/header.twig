@@ -1,10 +1,21 @@
-<header>
-    <a class="ajax" href="{{ route('index_index') }}">{{ 'home'|trans }}</a>
-    <a class="ajax" href="{{ route('index_about') }}">{{ 'about'|trans }}</a>
-    <a class="ajax" href="{{ route('news_index') }}">{{ 'news'|trans }}</a>
-    <a class="ajax" href="{{ route('news_single') }}">{{ 'news_single'|trans }}</a>
-    <br>
-    {% for _lang in app.config.langs.all %}
-        <a href="{{ route(route_name,_lang) }}">{{ _lang }}</a>
-    {% endfor %}
-</header>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <title>{{ title is defined ? title : '' }}</title>
+        <meta name="description" content="" />
+
+        {% if config.minify.stylesheet %}
+            <link rel="stylesheet" href="">
+        {% else %}
+            <link rel="stylesheet" href="">
+        {% endif %}
+    </head>
+
+    <body>
+        <header>
+            <h1>Hello World</h1>
+        </header>

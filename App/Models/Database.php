@@ -1,41 +1,36 @@
 <?php
-namespace App;
+namespace App\Models;
 use \PDO;
 
 class Database {
 
-    private $name;
-
-    private $user;
-
-    private $password;
-
-    private $host;
-
+    private $db_name;
+    private $db_user;
+    private $db_password;
+    private $db_host;
     private $pdo;
 
-
-    public function __construct($name, $user = 'root', $password = 'root', $host = 'localhost') {
-        $this->name     = $name;
-        $this->user     = $user;
-        $this->password = $password;
-        $this->host     = $host;
-        $this->name     = $name;
+    public function __construct($db_name, $db_user, $db_password, $db_host) {
+        $this->db_name     = $db_name;
+        $this->db_user     = $db_user;
+        $this->db_password = $db_password;
+        $this->db_host     = $db_host;
+        $this->db_name     = $db_name;
     }
 
     private function getPDO() {
         if($this->pdo === null) {
-            $pdo = new PDO('mysql:dbname=blog;host=localhost', 'root', 'root');
-            $pdo->setAttibute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->pdo = $pdo;
+            $this->pdo = new PDO("mysql:dbname={$this->db_name};host={$this->db_host}", $this->db_user, $this->db_password);
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
         }
 
-        return $this->$pdo;
+        return $this->pdo;
     }
 
     public function query($stmnt) {
         $req  = $this->getPDO()->query($stmnt);
-        $data = $req->fetchAll(PDO::FETCH_OBJ);
+        $data = $req->fetchAll();
         return $data;
     }
 }

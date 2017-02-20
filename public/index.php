@@ -1,20 +1,16 @@
 <?php
-
 require('../vendor/autoload.php');
-$router = new \App\System\Router\Router($_GET);
 
-$loader = new Twig_Loader_Filesystem(__DIR__ . '/../App/Views');
-$twig   = new Twig_Environment($loader, [
-    'cache' => false
-]);
-$function = new Twig_Function('path', function ($el) {
-    return "bebe" . $el;
-});
-$twig->addFunction($function);
+use \App\Application\App;
+use \App\Application\Router\Router;
+
+$router = new Router($_GET);
 
 $router->get('/', function() {
-    global $twig;
-    echo $twig->render('pages/index.twig', []);
+    $data = App::getDb()->query('SELECT * FROM posts');
+    echo App::getTwig()->render('pages/index.twig', [
+        'posts' => $data
+    ]);
 });
 
 $router->get('/posts/:id/edit', function($id) {

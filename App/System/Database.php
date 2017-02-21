@@ -33,4 +33,19 @@ class Database {
         $data = $req->fetchAll();
         return $data;
     }
+
+    public function prepare($stmnt, $args, $one = false) {
+        $req = $this->getPDO()->prepare($stmnt);
+        $req->execute($args);
+
+        if($one) {
+            $data = $req->fetch();
+        }
+
+        else {
+            $data = $req->fetchAll();
+        }
+
+        return $data;
+    }
 }

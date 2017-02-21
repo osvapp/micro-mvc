@@ -8,10 +8,8 @@ use \App\System\Settings;
 $router = new Router($_GET);
 
 $router->get('/', function() {
-    $data = App::getDb()->query('SELECT * FROM posts');
-    echo App::getTwig()->render('pages/index.twig', [
-        'posts' => $data
-    ]);
+    $controller = new \App\Controllers\PostsController();
+    $controller->index();
 });
 
 $router->get('/posts/:id/edit', function($id) {

@@ -15,5 +15,4 @@ class PostsController extends Controller {
             'posts' => $data
         ]);
     }
-
 }

@@ -1,8 +1,7 @@
 <?php
-namespace App\Application;
+namespace App\System;
 
-use \App\Models\Database;
-use \App\Application\Settings;
+use \App\System\Settings;
 
 class App {
     private static $database;
@@ -11,10 +10,10 @@ class App {
     public static function getDb() {
         if(self::$database === null) {
             self::$database = new Database(
-                Settings::getProtected('db_database'),
-                Settings::getProtected('db_username'),
-                Settings::getProtected('db_password'),
-                Settings::getProtected('db_hostname')
+                Settings::get('db_name'),
+                Settings::get('db_username'),
+                Settings::get('db_password'),
+                Settings::get('db_host')
             );
         }
 
@@ -23,10 +22,10 @@ class App {
 
     public static function getTwig() {
         if(self::$twig === null) {
-            $loader = new \Twig_Loader_Filesystem(Settings::getProtected('twig_dir'));
+            $loader = new \Twig_Loader_Filesystem(dirname(__DIR__) . '/views');
 
             self::$twig = new \Twig_Environment($loader, [
-                'cache' => false
+                'cache' => Settings::get('twig_cache')
             ]);
 
             $function = new \Twig_Function('path', function ($el) {

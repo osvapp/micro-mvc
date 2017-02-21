@@ -1,8 +1,9 @@
 <?php
 require('../vendor/autoload.php');
 
-use \App\Application\App;
-use \App\Application\Router\Router;
+use \App\System\App;
+use \App\System\Router\Router;
+use \App\System\Settings;
 
 $router = new Router($_GET);
 

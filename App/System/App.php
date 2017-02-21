@@ -10,10 +10,10 @@ class App {
     public static function getDb() {
         if(self::$database === null) {
             self::$database = new Database(
-                Settings::get('db_name'),
-                Settings::get('db_username'),
-                Settings::get('db_password'),
-                Settings::get('db_host')
+                Settings::getConfig()['database']['name'],
+                Settings::getConfig()['database']['username'],
+                Settings::getConfig()['database']['password'],
+                Settings::getConfig()['database']['host']
             );
         }
 
@@ -25,7 +25,7 @@ class App {
             $loader = new \Twig_Loader_Filesystem(dirname(__DIR__) . '/views');
 
             self::$twig = new \Twig_Environment($loader, [
-                'cache' => Settings::get('twig_cache')
+                'cache' => Settings::getConfig()['twig']['cache']
             ]);
 
             $function = new \Twig_Function('path', function ($el) {

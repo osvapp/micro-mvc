@@ -12,7 +12,7 @@ $router->get('/', function() {
     $controller->index();
 });
 
-$router->get('/posts/:id/edit', function($id) {
+$router->get('/posts/:id-:slug/', function($id, $slug) {
     echo "Edit article $id";
 })->with('id', '[0-9]+');
 

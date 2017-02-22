@@ -16,7 +16,8 @@
                 {% for post in posts %}
                     <div class="col-md-12">
                         <h2>{{ post.post_title }}</h2>
-                        <p>{{ post.post_content }}</p>
+                        <p>{{ excerpt(post.post_content) }}</p>
+                        <a href="{{ url(post.post_id, post.post_slug, 'post') }}">Lire la suite</a>
                     </div>
                 {% endfor %}
             </div>

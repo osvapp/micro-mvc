@@ -29,11 +29,21 @@ class App {
                 'cache' => Settings::getConfig()['twig']['cache']
             ]);
 
-            $function = new \Twig_Function('asset', function ($path) {
+            $asset = new \Twig_Function('asset', function ($path) {
                 return Settings::getConfig()['url'] . 'assets/' . $path;
             });
 
-            self::$twig->addFunction($function);
+            $excerpt = new \Twig_Function('excerpt', function ($content) {
+                return substr($content, 0, 300) . '...';
+            });
+
+            $url = new \Twig_Function('url', function ($id, $slug, $post_type) {
+                if($post_type == 'post') return Settings::getConfig()['url'] . 'posts/' . $id . '-' . $slug;
+            });
+
+            self::$twig->addFunction($asset);
+            self::$twig->addFunction($excerpt);
+            self::$twig->addFunction($url);
         }
 
         return self::$twig;

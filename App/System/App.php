@@ -4,6 +4,7 @@ namespace App\System;
 use \App\System\Settings;
 
 class App {
+
     private static $database;
     private static $twig;
 
@@ -28,8 +29,8 @@ class App {
                 'cache' => Settings::getConfig()['twig']['cache']
             ]);
 
-            $function = new \Twig_Function('path', function ($el) {
-                return $el;
+            $function = new \Twig_Function('asset', function ($path) {
+                return Settings::getConfig()['url'] . 'assets/' . $path;
             });
 
             self::$twig->addFunction($function);
@@ -37,4 +38,5 @@ class App {
 
         return self::$twig;
     }
+
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 use \App\System\App;
 
 class Model {
+    
     protected $table;
 
     public function all() {
@@ -63,4 +64,5 @@ class Model {
             );
         }
     }
+
 }

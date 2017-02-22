@@ -56,4 +56,5 @@ class Database {
 
         return $data;
     }
+    
 }

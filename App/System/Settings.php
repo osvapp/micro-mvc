@@ -4,6 +4,7 @@ namespace App\System;
 use Symfony\Component\Yaml\Yaml;
 
 class Settings {
+
     public static $config       = null;
     private static $environment = null;
 
@@ -17,4 +18,5 @@ class Settings {
 
         return self::$config;
     }
+    
 }

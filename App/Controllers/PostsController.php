@@ -11,8 +11,9 @@ class PostsController extends Controller {
         $model = new PostsModel();
         $data  = $model->all();
 
-        echo App::getTwig()->render('pages/index.twig', [
+        $this->render('pages/index.twig', [
             'posts' => $data
         ]);
     }
+    
 }

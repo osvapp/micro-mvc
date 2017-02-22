@@ -1,6 +1,7 @@
 environment: 'dev'
 
 dev:
+    url: 'http://localhost:8888/'
     database:
         username: 'root'
         password: 'root'
@@ -15,6 +16,7 @@ dev:
         javascript: false
 
 prod:
+    url: 'http://localhost:8888/'
     database:
         username: 'root'
         password: 'root'

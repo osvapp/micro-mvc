@@ -13,11 +13,12 @@ $router->get('/', function() {
 });
 
 $router->get('/posts/:id-:slug/', function($id, $slug) {
-    echo "Edit article $id";
+    $controller = new \App\Controllers\PostsController();
+    $controller->single($id, $slug);
 })->with('id', '[0-9]+');
 
 $router->error(function() {
-    echo 'Nothing';
+    App::error();
 });
 
 $router->run();

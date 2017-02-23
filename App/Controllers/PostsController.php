@@ -15,5 +15,20 @@ class PostsController extends Controller {
             'posts' => $data
         ]);
     }
-    
+
+    public function single($id, $slug) {
+        $model = new PostsModel();
+        $data  = $model->find($id);
+
+        if($data->slug === $slug) {
+            $this->render('pages/single.twig', [
+                'post' => $data
+            ]);
+        }
+
+        else {
+            App::error();
+        }
+    }
+
 }

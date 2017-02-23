@@ -2,6 +2,7 @@
 namespace App\System;
 
 use \App\System\Settings;
+use \App\Controllers\Controller;
 
 class App {
 
@@ -47,6 +48,12 @@ class App {
         }
 
         return self::$twig;
+    }
+
+    public static function error() {
+        header("HTTP/1.0 404 Not Found");
+        $controller = new \App\Controllers\Controller();
+        $controller->render('pages/404.twig', []);
     }
 
 }

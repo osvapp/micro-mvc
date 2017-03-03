@@ -17,6 +17,16 @@ $router->get('/posts/:id-:slug/', function($id, $slug) {
     $controller->single($id, $slug);
 })->with('id', '[0-9]+');
 
+$router->get('/login/', function() {
+    $controller = new \App\Controllers\UsersController();
+    $controller->login();
+});
+
+$router->post('/login/', function() {
+    $controller = new \App\Controllers\UsersController();
+    $controller->login();
+});
+
 $router->error(function() {
     App::error();
 });

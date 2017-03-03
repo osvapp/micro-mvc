@@ -9,6 +9,11 @@ class App {
     private static $database;
     private static $twig;
 
+    public function __construct() {
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
+    }
+
     public static function getDb() {
         if(self::$database === null) {
             self::$database = new Database(
@@ -54,6 +59,11 @@ class App {
         header("HTTP/1.0 404 Not Found");
         $controller = new \App\Controllers\Controller();
         $controller->render('pages/404.twig', []);
+    }
+
+    public static function redirect($path) {
+        $location = 'Location: ' . Settings::getConfig()['url'] . $path;
+        header($location);
     }
 
 }

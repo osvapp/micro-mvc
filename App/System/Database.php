@@ -56,5 +56,16 @@ class Database {
 
         return $data;
     }
-    
+
+    public function execute($statement, $attributes = false) {
+        if(!$attributes) {
+            $this->getPDO()->query($statement);
+        }
+
+        else {
+            $req = $this->getPDO()->prepare($statement);
+            $req->execute($attributes);
+        }
+    }
+
 }

@@ -1,17 +1,10 @@
-/*
-Application name:
-Description:
-Version: 1.0
-*/
-
 @charset 'UTF-8';
 
 // Tools
 @import 'tools/variables';
-@import 'tools/utility-classes';
 
 // Vendors
-@import 'vendor/responsive';
+@import 'vendor/bootstrap/bootstrap';
 
 // Base
 @import 'base/normalize';
@@ -19,16 +12,6 @@ Version: 1.0
 
 // Components
 @import 'components/form';
-@import 'components/buttons';
-@import 'components/card';
-@import 'components/products';
-@import 'components/single-product';
-@import 'components/categories';
-@import 'components/users';
-@import 'components/reports';
-@import 'components/dashboard';
-@import 'components/errors';
 
 // Layout
-@import 'layout/sidebar';
-@import 'layout/main';
+@import 'layout/header';

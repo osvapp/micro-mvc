@@ -1,7 +1,7 @@
 {
   "name": "micro-mvc",
   "version": "1.0.0",
-  "description": "An incredibly simple MVC written in PHP with routing and Twig templating.",
+  "description": "",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

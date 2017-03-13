@@ -4,7 +4,7 @@ namespace App\Models;
 use \App\System\App;
 
 class Model {
-
+    
     protected $table;
 
     public function all() {
@@ -24,9 +24,7 @@ class Model {
             $attributes[] = $v;
         }
 
-        $attributes[] = $id;
         $sql_part = implode(', ', $sql_parts);
-
         App::getDb()->execute("UPDATE {$this->table} SET $sql_part WHERE id = $id", $attributes);
     }
 

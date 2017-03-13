@@ -1,31 +1,22 @@
 environment: 'dev'
 
 dev:
+    name: 'Micro MVC'
+    description: 'Just a simple micro mvc'
     url: 'http://localhost:8888/'
     database:
         username: 'root'
         password: 'root'
-        name: 'blog'
+        name: 'mvc'
         host: 'localhost'
         type: 'mysql'
     debug: true
     twig:
         cache: false
-    minify:
-        stylesheet: false
-        javascript: false
-
-prod:
-    url: 'http://localhost:8888/'
-    database:
-        username: 'root'
-        password: 'root'
-        name: 'blog'
+    salt: '8dezY!2deH'
+    mail:
+        from: 'root@root.com'
         host: 'localhost'
-        type: 'mysql'
-    debug: false
-    twig:
-        cache: true
-    minify:
-        stylesheet: true
-        javascript: true
+        username: null
+        password: null
+        port: 1025

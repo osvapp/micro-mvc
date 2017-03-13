@@ -10,8 +10,15 @@ class App {
     private static $twig;
 
     public function __construct() {
-        error_reporting(E_ALL);
-        ini_set('display_errors', 1);
+        if(Settings::getConfig()['debug']) {
+            error_reporting(E_ALL);
+            ini_set('display_errors', 1);
+        }
+
+        else {
+            error_reporting(0);
+            ini_set('display_errors', 0);
+        }
     }
 
     public static function getDb() {
@@ -39,17 +46,33 @@ class App {
                 return Settings::getConfig()['url'] . 'assets/' . $path;
             });
 
-            $excerpt = new \Twig_Function('excerpt', function ($content) {
-                return substr($content, 0, 300) . '...';
+            $excerpt = new \Twig_Function('excerpt', function ($content, $size = 300) {
+                return substr($content, 0, $size) . '...';
             });
 
-            $url = new \Twig_Function('url', function ($id, $slug, $post_type) {
-                if($post_type == 'post') return Settings::getConfig()['url'] . 'posts/' . $id . '-' . $slug;
+            $url = new \Twig_Function('url', function ($slug, $id = null, $post_type = null) {
+                return Settings::getConfig()['url'] . $slug;
             });
+
+            $pad = new \Twig_Function('pad', function ($value, $size = 5) {
+                $s = $value . "";
+                while (strlen($s) < $size) $s = "0" . $s;
+                return $s;
+            });
+
+            $title = new \Twig_Function('title', function ($title = null) {
+                if($title) return $title . ' - ' . Settings::getConfig()['name'];
+                else return Settings::getConfig()['name'];
+            });
+
 
             self::$twig->addFunction($asset);
             self::$twig->addFunction($excerpt);
             self::$twig->addFunction($url);
+            self::$twig->addFunction($title);
+            self::$twig->addFunction($pad);
+
+            isset($_SESSION['auth']) ? self::$twig->addGlobal('auth', $_SESSION['auth']) : self::$twig->addGlobal('auth', '');
         }
 
         return self::$twig;
@@ -61,9 +84,16 @@ class App {
         $controller->render('pages/404.twig', []);
     }
 
-    public static function redirect($path) {
+    public static function redirect($path = '') {
         $location = 'Location: ' . Settings::getConfig()['url'] . $path;
         header($location);
+    }
+
+    public static function secured() {
+        if(!isset($_SESSION['auth'])) {
+            self::redirect('signin');
+            exit;
+        }
     }
 
 }

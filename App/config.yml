@@ -7,7 +7,7 @@ dev:
     database:
         username: 'root'
         password: 'root'
-        name: 'mvc'
+        name: 'blog'
         host: 'localhost'
         type: 'mysql'
     debug: true

@@ -10,13 +10,13 @@ class PostsController extends Controller {
 
     public function all() {
         $model = new PostsModel();
-        $data  = $model->all();
+        $posts  = $model->all();
 
-        $this->render('posts.twig', [
-            'title'       => 'Products',
-            'description' => 'Products - Just a simple inventory management system.',
+        $this->render('pages/index.twig', [
+            'title'       => 'Welcome!',
+            'description' => 'Welcom! - Just a simple inventory management system.',
             'page'        => 'products',
-            'products'    => $data
+            'posts'    => $posts
         ]);
     }
 

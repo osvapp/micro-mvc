@@ -16,8 +16,7 @@ $router->get('/', function() {
     $controller->all();
 });
 
-$router->post('/posts/:id/', function($id) {
-    App::secured();
+$router->get('/posts/:id/', function($id) {
     $controller = new \App\Controllers\PostsController();
     $controller->single($id);
 })->with('id', '[0-9]+');
@@ -36,6 +35,12 @@ $router->get('/signout/', function() {
     $controller = new \App\Controllers\UsersController();
     $controller->logout();
 });
+
+$router->get('/admin/', function($id) {
+    App::secured();
+    $controller = new \App\Controllers\PostsController();
+    $controller->single($id);
+})->with('id', '[0-9]+');
 
 $router->error(function() {
     App::error();

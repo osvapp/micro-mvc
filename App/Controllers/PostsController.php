@@ -157,4 +157,16 @@ class PostsController extends Controller {
         }
     }
 
+    public function single($id) {
+        $model = new PostsModel();
+        $post  = $model->find($id);
+
+        $this->render('pages/single.twig', [
+            'title'       => 'Single post',
+            'description' => 'Post - Just a simple inventory management system.',
+            'page'        => 'products',
+            'post'        => $post
+        ]);
+    }
+
 }

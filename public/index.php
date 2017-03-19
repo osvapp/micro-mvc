@@ -36,11 +36,11 @@ $router->get('/signout/', function() {
     $controller->logout();
 });
 
-$router->get('/admin/', function($id) {
+$router->get('/admin/', function() {
     App::secured();
-    $controller = new \App\Controllers\PostsController();
-    $controller->single($id);
-})->with('id', '[0-9]+');
+    $controller = new \App\Controllers\AdminController();
+    $controller->index();
+});
 
 $router->error(function() {
     App::error();

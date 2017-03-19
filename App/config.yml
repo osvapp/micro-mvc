@@ -13,7 +13,7 @@ dev:
     debug: true
     twig:
         cache: false
-    salt: '8dezY!2deH'
+    salt: '9TdQ&dd!2H'
     mail:
         from: 'root@root.com'
         host: 'localhost'

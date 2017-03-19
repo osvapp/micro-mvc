@@ -44,6 +44,12 @@ input:focus {
     color: $white;
 }
 
+button {
+    &:focus, &:active {
+        outline: none;
+    }
+}
+
 .content {
     margin-top: 54px;
 }
